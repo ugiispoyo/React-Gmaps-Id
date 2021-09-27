@@ -1,6 +1,6 @@
 {
   "name": "react-gmaps-id",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "For using google maps with ReactJs",
   "main": "dist/ReactGmapsId",
   "scripts": {
