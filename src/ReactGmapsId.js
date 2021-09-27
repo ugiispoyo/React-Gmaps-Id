@@ -8,18 +8,19 @@ export default function ReactMapsId({
   zoom = 8,
   onDrag
 }) {
+  let [myLat, setMyLat] = useState({
+    lat: -6.196309372048864,
+    lng: 106.8804765624999
+  });
+  let [myData, setMyData] = useState([]);
   const [checkScript, setCheckScript] = useState(false);
+  let [myOpt, setOpt] = useState({
+    zoom: 8,
+    center: myLat
+  });
+  let [address, setAddress] = useState("");
 
-  let myLat = { lat: -6.196309372048864, lng: 106.8804765624999 };
-  let geocoder,
-    marker,
-    google,
-    map,
-    myOpt = {
-      zoom: 8,
-      center: myLat
-    },
-    address = "";
+  let geocoder, marker, google, map;
 
   useEffect(() => {
     let isSubbribe = true;
@@ -41,10 +42,9 @@ export default function ReactMapsId({
     return () => {
       isSubbribe = false;
     };
-  }, [checkScript, defaultMap]);
+  }, [checkScript]);
 
   const initMap = () => {
-    defaultMap = address;
     google = window.google;
 
     if (defaultMap !== "") {
@@ -60,16 +60,31 @@ export default function ReactMapsId({
     });
 
     marker?.addListener("dragend", (getLangLot) => {
-      onDrag(getLangLot.latLng.toJSON());
+      geocode({ location: getLangLot.latLng.toJSON() });
     });
   };
 
-  let setDefault = (defaultAddress = undefined, defaultZoom = undefined) => {
-    address = defaultAddress ? defaultAddress : "";
-    myOpt = {
-      ...myOpt,
-      zoom: defaultZoom ? parseInt(defaultZoom) : 8
-    };
+  useEffect(() => {
+    if (checkScript) {
+      google = window.google;
+      geocode({ address: defaultMap });
+      map = new google.maps.Map(document.getElementById("map__"), myOpt);
+
+      marker = new google.maps.Marker({
+        map,
+        draggable: true,
+        position: myLat
+      });
+
+      marker?.addListener("dragend", (getLangLot) => {
+        geocode({ location: getLangLot.latLng.toJSON() });
+      });
+    }
+  }, [defaultMap]);
+
+  let setDefault = (defaultMap, zoom) => {
+    setAddress(defaultMap);
+    setOpt({ ...myOpt, zoom: zoom ? parseInt(zoom) : 8 });
   };
 
   const clear = () => {
@@ -85,14 +100,19 @@ export default function ReactMapsId({
         .then((result) => {
           const { results } = result;
 
-          myOpt = {
+          setOpt({
             ...myOpt,
             center: results[0].geometry.location
-          };
+          });
+          setMyData(results);
+          setMyLat(results[0].geometry.location.toJSON());
 
           map.setCenter(results[0].geometry.location);
           marker.setPosition(results[0].geometry.location);
           marker.setMap(map);
+
+          onDrag(results);
+          return results;
         })
         .catch((e) => {
           alert("Geocode was not successful for the following reason: " + e);
@@ -103,10 +123,13 @@ export default function ReactMapsId({
         .geocode(request)
         .then((result) => {
           const { results } = result;
+          setMyData(results);
+          setMyLat(results[0].geometry.location.toJSON());
 
           map.setCenter(results[0].geometry.location);
           marker.setPosition(results[0].geometry.location);
           marker.setMap(map);
+          onDrag(results);
           return results;
         })
         .catch((e) => {
