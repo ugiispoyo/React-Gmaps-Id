@@ -13,7 +13,7 @@ export default function App() {
   /* Get Data After Drag Marker */
   const onDrag = (val) => {
     console.log(val); // Get all data
-    console.log(val[0].geometry.location.toJSON()); // Get LangLot 
+    console.log(val[0].geometry.location.toJSON()); // Get LatLng 
   };
 
   return (
