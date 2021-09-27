@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function ReactMapsId({
+export default function ReactMapsId({
   width,
   height,
   keyGoogle,
@@ -41,7 +41,7 @@ function ReactMapsId({
     return () => {
       isSubbribe = false;
     };
-  }, [defaultMap]);
+  }, [checkScript, defaultMap]);
 
   const initMap = () => {
     defaultMap = address;
@@ -127,5 +127,3 @@ function ReactMapsId({
     </>
   );
 }
-
-export default ReactMapsId;
