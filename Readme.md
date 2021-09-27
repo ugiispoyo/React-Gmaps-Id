@@ -11,6 +11,7 @@ import ReactGmapsId from "react-gmaps-id";
 export default function App() {
   const onDrag = (val) => {
     console.log(val);
+    console.log(val[0].geometry.location.toJSON()); // Get LangLot 
   };
 
   return (
