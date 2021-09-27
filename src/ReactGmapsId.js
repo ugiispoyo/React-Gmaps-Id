@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function ReactMapsId({
+function ReactMapsId({
   width,
   height,
   keyGoogle,
@@ -127,3 +127,5 @@ export default function ReactMapsId({
     </>
   );
 }
+
+export default ReactMapsId;

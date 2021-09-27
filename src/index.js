@@ -1,3 +1,3 @@
-import ReactGmapsId from './ReactGmapsId';
+var ReactGmapsId = require('./ReactGmapsId');
 
-module.exports = {ReactGmapsId};
+module.exports = ReactGmapsId;
