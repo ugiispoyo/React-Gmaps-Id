@@ -41,7 +41,7 @@ export default function ReactMapsId({
     return () => {
       isSubbribe = false;
     };
-  }, [checkScript]);
+  }, [defaultMap]);
 
   const initMap = () => {
     defaultMap = address;
