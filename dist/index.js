@@ -1,1 +1,1 @@
-import ReactGmapsId from"ReactGmapsId";module.exports={ReactGmapsId};
+import ReactGmapsId from"./ReactGmapsId";module.exports={ReactGmapsId};

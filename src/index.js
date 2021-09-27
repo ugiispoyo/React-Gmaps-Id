@@ -1,3 +1,3 @@
-import ReactGmapsId from 'ReactGmapsId';
+import ReactGmapsId from './ReactGmapsId';
 
 module.exports = {ReactGmapsId};
