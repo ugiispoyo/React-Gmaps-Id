@@ -12,13 +12,11 @@ export default function ReactMapsId({
     lat: -6.196309372048864,
     lng: 106.8804765624999
   });
-  let [myData, setMyData] = useState([]);
   const [checkScript, setCheckScript] = useState(false);
   let [myOpt, setOpt] = useState({
-    zoom: 8,
+    zoom: parseInt(zoom),
     center: myLat
   });
-  let [address, setAddress] = useState("");
 
   let geocoder, marker, google, map;
 
@@ -82,9 +80,8 @@ export default function ReactMapsId({
     }
   }, [defaultMap]);
 
-  let setDefault = (defaultMap, zoom) => {
-    setAddress(defaultMap);
-    setOpt({ ...myOpt, zoom: zoom ? parseInt(zoom) : 8 });
+  let setDefault = (defaultMap, zoom_) => {
+    setOpt({ ...myOpt, zoom: zoom_ ? parseInt(zoom_) : 8 });
   };
 
   const clear = () => {
@@ -102,9 +99,9 @@ export default function ReactMapsId({
 
           setOpt({
             ...myOpt,
+            zoom: parseInt(zoom),
             center: results[0].geometry.location
           });
-          setMyData(results);
           setMyLat(results[0].geometry.location.toJSON());
 
           map.setCenter(results[0].geometry.location);
@@ -123,7 +120,11 @@ export default function ReactMapsId({
         .geocode(request)
         .then((result) => {
           const { results } = result;
-          setMyData(results);
+          setOpt({
+            ...myOpt,
+            zoom: parseInt(zoom),
+            center: results[0].geometry.location
+          });
           setMyLat(results[0].geometry.location.toJSON());
 
           map.setCenter(results[0].geometry.location);
