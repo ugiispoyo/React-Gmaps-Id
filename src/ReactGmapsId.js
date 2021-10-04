@@ -112,7 +112,8 @@ export default function ReactMapsId({
           return results;
         })
         .catch((e) => {
-          alert("Geocode was not successful for the following reason: " + e);
+          // alert("Geocode was not successful for the following reason: " + e);
+          console.log("Geocode was not successful for the following reason: ", e);
         });
     } else {
       clear();
@@ -134,7 +135,8 @@ export default function ReactMapsId({
           return results;
         })
         .catch((e) => {
-          alert("Geocode was not successful for the following reason: " + e);
+          // alert("Geocode was not successful for the following reason: " + e);
+          console.log("Geocode was not successful for the following reason: ", e);
         });
     }
   };
