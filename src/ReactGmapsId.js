@@ -7,7 +7,7 @@ export default function ReactMapsId({
     defaultMap = "",
     zoom = 8,
     onDrag,
-    name,
+    name = "dafault",
 }) {
     let [myLat, setMyLat] = useState({
         lat: -6.196309372048864,
