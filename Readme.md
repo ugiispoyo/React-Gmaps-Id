@@ -18,6 +18,7 @@ export default function App() {
 
   return (
     <ReactGmapsId
+      name="test" // Unique key of ReactGmapsId
       height="200px" // Height layout of maps
       width="200px" // Width layout of maps
       zoom="10" // Zoom maps
