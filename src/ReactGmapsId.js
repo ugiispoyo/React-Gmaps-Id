@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+
 export default function ReactMapsId({
     width,
     height,
@@ -7,7 +8,7 @@ export default function ReactMapsId({
     defaultMap = "",
     zoom = 8,
     onDrag,
-    name = "dafault",
+    name = "default",
 }) {
     let [myLat, setMyLat] = useState({
         lat: -6.196309372048864,
@@ -46,6 +47,7 @@ export default function ReactMapsId({
 
         map = new google.maps.Map(
             document.getElementById("map__" + name),
+            // document.getElementsByClassName("map__" + name),
             myOpt
         );
 
@@ -66,6 +68,7 @@ export default function ReactMapsId({
             geocode({ address: defaultMap });
             map = new google.maps.Map(
                 document.getElementById("map__" + name),
+                // document.getElementsByClassName("map__" + name),
                 myOpt
             );
 
@@ -150,6 +153,7 @@ export default function ReactMapsId({
         <>
             <div
                 id={"map__" + name}
+                // className={"map__"+ name}
                 style={{
                     width: width ? width : "400px",
                     height: height ? height : "230px",
