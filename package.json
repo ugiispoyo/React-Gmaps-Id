@@ -1,6 +1,6 @@
 {
   "name": "react-gmaps-id",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "For using google maps with ReactJs",
   "main": "lib",
   "scripts": {
