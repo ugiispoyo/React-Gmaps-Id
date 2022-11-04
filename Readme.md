@@ -24,6 +24,7 @@ export default function App() {
       zoom="10" // Zoom maps
       defaultMap="Dapur Rumaisha" // Set default center of maps
       onDrag={onDrag} // Callback function Drag marker
+      onError={(e) => {console.log(e)}} // Callback error function
       keyGoogle="GOOGLE_KEY" // Google key
     />
   );

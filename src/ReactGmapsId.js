@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-
 export default function ReactMapsId({
     width,
     height,
@@ -8,6 +7,7 @@ export default function ReactMapsId({
     defaultMap = "",
     zoom = 8,
     onDrag,
+    onError,
     name = "default",
 }) {
     let [myLat, setMyLat] = useState({
@@ -116,7 +116,11 @@ export default function ReactMapsId({
                     return results;
                 })
                 .catch((e) => {
-                    console.error("Geocode was not successful for the following reason: ",e)
+                    console.error(
+                        "Geocode was not successful for the following reason: ",
+                        e
+                    );
+                    onError(e);
                     // alert(
                     //     "Geocode was not successful for the following reason: " +
                     //         e
@@ -142,7 +146,11 @@ export default function ReactMapsId({
                     return results;
                 })
                 .catch((e) => {
-                    console.error("Geocode was not successful for the following reason: ",e)
+                    console.error(
+                        "Geocode was not successful for the following reason: ",
+                        e
+                    );
+                    onError(e);
                     // alert(
                     //     "Geocode was not successful for the following reason: " +
                     //         e
